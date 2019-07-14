@@ -2,7 +2,7 @@
 Imports System.IO
 Imports System.Text
 
-Public Class Form1
+Public Class InitSetting
     Private Sub BtnInit_Click(sender As Object, e As EventArgs) Handles btnInit.Click
         MsgBox("BtnInit_Click")
         Try
@@ -21,11 +21,11 @@ Public Class Form1
                 End Using
             End Using
             MessageBox.Show("MyAppデータベース作成成功", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            'Msg(CType(New Object() {"MyAppデータベース作成成功", Me.Text}, Object))
+
             Msg(New Object() {"MyAppデータベース作成成功", Me.Text})
         Catch ex As Exception
             MessageBox.Show("MyAppデータベース作成失敗" + Environment.NewLine + ex.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            'Msg(CType(New Object() {"MyAppデータベース作成失敗" + Environment.NewLine + ex.Message, Me.Text}, Object))
+
             Msg("MyAppデータベース作成失敗" + Environment.NewLine + ex.Message, Me.Text)
         End Try
 
@@ -57,17 +57,7 @@ Public Class Form1
             ' TextWriterを使って、文字列をファイルに書き込む
             writer.WriteLine(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff ") + String.Join(", ", param))
 
-            'For i As Integer = 0 To param.Length - 1
-            '    If (TypeOf param(i) Is Integer) Then
-            '        writer.WriteLine($"{i + 1}番目はintで、値は{param(i)}です")
-            '    ElseIf (TypeOf param(i) Is Array) Then
-            '        writer.WriteLine($"{i + 1}番目は配列です")
-            '    Else
-            '        writer.WriteLine($"{i + 1}番目は想定外の型です")
-            '    End If
-            'Next
         End Using ' ここでTextWriterオブジェクトのDisposeメソッドが呼び出される
-        'End Using ' ここでFileStreamオブジェクトのDisposeメソッドが呼び出される
 
     End Sub
 End Class
