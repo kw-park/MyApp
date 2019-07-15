@@ -68,6 +68,15 @@ Public Class InitSetting
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         Msg("BtnUpdate_Click")
-
+        Try
+            Using con As New SQLiteConnection("Data Source=MyApp.db")
+                Dim ds As New DataSet
+                Dim da As New SQLiteDataAdapter("SELECT * FROM M_Environment", con)
+                da.Fill(ds, "M_Environment")
+                Me.dgvDataList.DataSource = ds.Tables("M_Environment")
+            End Using
+        Catch ex As Exception
+            Msg(ex.Message)
+        End Try
     End Sub
 End Class
