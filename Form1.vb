@@ -3,32 +3,37 @@ Imports System.IO
 Imports System.Text
 
 Public Class InitSetting
-    Private Sub BtnInit_Click(sender As Object, e As EventArgs) Handles btnInit.Click
-        MsgBox("BtnInit_Click")
+
+    Private Sub InitSetting_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Msg("InitSetting_Load")
         Try
             Using con As New SQLiteConnection("Data Source=MyApp.db")
                 con.Open()
+
                 Using cmd As SQLiteCommand = con.CreateCommand()
-                    'SELECT count(*) FROM sqlite_master WHERE type="table" AND name="M_Environment"
-                    cmd.CommandText = "CREATE TABLE M_Environment (ID INTEGER PRIMARY KEY, Name NVARCHAR(128), Sort INTEGER, R_TimeStamp TIMESTAMP DEFAULT (datetime(CURRENT_TIMESTAMP,'localtime')))"
-                    cmd.ExecuteNonQuery()
-                    cmd.CommandText = "INSERT INTO M_Environment (Name, Sort) VALUES('Test1', 10)"
-                    cmd.ExecuteNonQuery()
-                    cmd.CommandText = "INSERT INTO M_Environment (Name, Sort) VALUES('Test2', 20)"
-                    cmd.ExecuteNonQuery()
-                    cmd.CommandText = "INSERT INTO M_Environment (Name, Sort) VALUES('Test3', 30)"
-                    cmd.ExecuteNonQuery()
+                    cmd.CommandText = "SELECT count(*) FROM sqlite_master " &
+                        "WHERE type='table' AND name='M_Environment'"
+                    If CInt(cmd.ExecuteScalar()) = 0 Then
+                        cmd.CommandText = "CREATE TABLE M_Environment (ID INTEGER PRIMARY KEY, Name NVARCHAR(128), Sort INTEGER, R_TimeStamp TIMESTAMP DEFAULT (datetime(CURRENT_TIMESTAMP,'localtime')))"
+                        cmd.ExecuteNonQuery()
+
+                        cmd.CommandText = "INSERT INTO M_Environment (Name, Sort) VALUES('Test1', 10)"
+                        cmd.ExecuteNonQuery()
+                        cmd.CommandText = "INSERT INTO M_Environment (Name, Sort) VALUES('Test2', 20)"
+                        cmd.ExecuteNonQuery()
+                        cmd.CommandText = "INSERT INTO M_Environment (Name, Sort) VALUES('Test3', 30)"
+                        cmd.ExecuteNonQuery()
+                    End If
                 End Using
+
+                Dim ds As New DataSet
+                Dim da As New SQLiteDataAdapter("SELECT * FROM M_Environment", con)
+                da.Fill(ds, "M_Environment")
+                Me.dgvDataList.DataSource = ds.Tables("M_Environment")
             End Using
-            MessageBox.Show("MyAppデータベース作成成功", Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            Msg(New Object() {"MyAppデータベース作成成功", Me.Text})
         Catch ex As Exception
-            MessageBox.Show("MyAppデータベース作成失敗" + Environment.NewLine + ex.Message, Me.Text, MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-            Msg("MyAppデータベース作成失敗" + Environment.NewLine + ex.Message, Me.Text)
+            Msg(ex.Message)
         End Try
-
     End Sub
 
     Private Sub BtnList_Click(sender As Object, e As EventArgs) Handles btnList.Click
@@ -58,6 +63,11 @@ Public Class InitSetting
             writer.WriteLine(DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff ") + String.Join(", ", param))
 
         End Using ' ここでTextWriterオブジェクトのDisposeメソッドが呼び出される
+
+    End Sub
+
+    Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+        Msg("BtnUpdate_Click")
 
     End Sub
 End Class
