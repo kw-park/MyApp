@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class InitSetting
+Partial Class InitForm
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
@@ -59,7 +59,7 @@ Partial Class InitSetting
         Me.btnUpdate.Text = "Update(&U)"
         Me.btnUpdate.UseVisualStyleBackColor = True
         '
-        'InitSetting
+        'InitForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -68,8 +68,8 @@ Partial Class InitSetting
         Me.Controls.Add(Me.dgvDataList)
         Me.Controls.Add(Me.btnList)
         Me.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
-        Me.Name = "InitSetting"
-        Me.Text = "Initial setting"
+        Me.Name = "InitForm"
+        Me.Text = "InitForm"
         CType(Me.dgvDataList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
