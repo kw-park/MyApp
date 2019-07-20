@@ -134,7 +134,6 @@
   <ItemGroup>
     <Compile Include="common\CommonConst.vb" />
     <Compile Include="common\CommonModule.vb" />
-    <Compile Include="common\CommonSQLite.vb" />
     <Compile Include="InitForm.vb">
       <SubType>Form</SubType>
     </Compile>
