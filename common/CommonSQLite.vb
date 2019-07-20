@@ -23,6 +23,7 @@ Module CommonSQLite
                         cmd.CommandText = "INSERT INTO M_Environment (Name, Sort) VALUES('Test3', 30)"
                         cmd.ExecuteNonQuery()
                     End If
+
                 End Using
             End Using
         Catch ex As Exception
