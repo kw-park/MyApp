@@ -23,15 +23,17 @@ Partial Class MenuForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.tagEnv = New System.Windows.Forms.TabPage()
+        Me.tagMenu = New System.Windows.Forms.TabPage()
+        Me.btnInit = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
+        Me.tagEnv.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
         '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.tagMenu)
+        Me.TabControl1.Controls.Add(Me.tagEnv)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
@@ -39,25 +41,35 @@ Partial Class MenuForm
         Me.TabControl1.Size = New System.Drawing.Size(800, 450)
         Me.TabControl1.TabIndex = 0
         '
-        'TabPage1
+        'tagEnv
         '
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(792, 424)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "TabPage1"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.tagEnv.Controls.Add(Me.btnInit)
+        Me.tagEnv.Location = New System.Drawing.Point(4, 22)
+        Me.tagEnv.Name = "tagEnv"
+        Me.tagEnv.Padding = New System.Windows.Forms.Padding(3)
+        Me.tagEnv.Size = New System.Drawing.Size(792, 424)
+        Me.tagEnv.TabIndex = 0
+        Me.tagEnv.Text = "Env"
+        Me.tagEnv.UseVisualStyleBackColor = True
         '
-        'TabPage2
+        'tagMenu
         '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(192, 74)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
+        Me.tagMenu.Location = New System.Drawing.Point(4, 22)
+        Me.tagMenu.Name = "tagMenu"
+        Me.tagMenu.Padding = New System.Windows.Forms.Padding(3)
+        Me.tagMenu.Size = New System.Drawing.Size(792, 424)
+        Me.tagMenu.TabIndex = 1
+        Me.tagMenu.Text = "Menu"
+        Me.tagMenu.UseVisualStyleBackColor = True
+        '
+        'btnInit
+        '
+        Me.btnInit.Location = New System.Drawing.Point(9, 7)
+        Me.btnInit.Name = "btnInit"
+        Me.btnInit.Size = New System.Drawing.Size(75, 23)
+        Me.btnInit.TabIndex = 0
+        Me.btnInit.Text = "Init(&I)"
+        Me.btnInit.UseVisualStyleBackColor = True
         '
         'MenuForm
         '
@@ -68,11 +80,13 @@ Partial Class MenuForm
         Me.Name = "MenuForm"
         Me.Text = "MenuForm"
         Me.TabControl1.ResumeLayout(False)
+        Me.tagEnv.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents tagEnv As TabPage
+    Friend WithEvents tagMenu As TabPage
+    Friend WithEvents btnInit As Button
 End Class

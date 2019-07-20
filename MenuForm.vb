@@ -10,6 +10,22 @@ Public Class MenuForm
             LogWrite(key, ConfigurationManager.AppSettings(key))
         Next key
 
+        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "END")
+    End Sub
 
+    Private Sub BtnInit_Click(sender As Object, e As EventArgs) Handles btnInit.Click
+        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "START")
+
+        Dim form As Form = New InitForm
+        Me.Hide()
+        form.ShowDialog()
+        If form.DialogResult = DialogResult.OK Then
+            LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "OK?", form.DialogResult)
+        Else
+            LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "OR?", form.DialogResult)
+        End If
+        Me.Show()
+
+        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "END")
     End Sub
 End Class
