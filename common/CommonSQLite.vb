@@ -34,7 +34,7 @@ Module CommonSQLite
 
 
     Public Function GetDatatable(ByVal tableName As String) As DataTable
-        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "START")
+        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "START 0")
 
         Return GetDatatable(tableName, String.Format("SELECT * FROM {0}", tableName))
 
@@ -55,19 +55,18 @@ Module CommonSQLite
             End Using
         Catch ex As Exception
             LogWrite(ex.Message)
+        Finally
+            GetDatatable = Nothing
+            LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "End")
         End Try
-
-        GetDatatable = Nothing
-
-        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "End")
     End Function
 
     Public Function SetUpdateDataTable(ByVal data As DataTable) As Integer
-        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "START")
+        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "START 0")
 
         Return SetUpdateDataTable(String.Format("SELECT * FROM {0}", data.TableName), data)
 
-        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "End")
+        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "End 0")
     End Function
     Public Function SetUpdateDataTable(ByVal query As String, ByVal data As DataTable) As Integer
         LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "START")
@@ -82,16 +81,13 @@ Module CommonSQLite
                 i = da.Update(data)
 
                 LogWrite("Update count = " & i)
-
-                Return i
             End Using
         Catch ex As Exception
             LogWrite(ex.Message)
+        Finally
+            SetUpdateDataTable = i
+            LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "End")
         End Try
-
-        SetUpdateDataTable = i
-
-        LogWrite(System.Reflection.MethodBase.GetCurrentMethod().Name, "End")
     End Function
 
     Public Sub GetData()
